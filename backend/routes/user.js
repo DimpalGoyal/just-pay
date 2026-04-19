@@ -3,5 +3,5 @@ const app = express()
 
 
 app.post('/signup', (req,res)=>{
-    
+    res.send({msg: "welcome user"})   
 })

@@ -1,6 +1,9 @@
 const mongoose = require('mongoose')
+const dotenv = require('dotenv')
 
-mongoose.connect('mongodb+srv://admin:tBiLoEWFPhxpVhZI@cluster0.mvkomnu.mongodb.net/justPay')
+dotenv.load()
+
+mongoose.connect(process.env.MONGODB_URL)
 
 const userSchema = mongoose.Schema({
     firstName: String,
