@@ -4,6 +4,7 @@ const z = require("zod");
 const jwt = require("jsonwebtoken");
 const { User } = require("../db");
 const dotenv = require("dotenv");
+const { authMiddleware } = require("../middleware");
 
 dotenv.load();
 const jwtSecret = env.process.JWT_SECRET;
@@ -50,12 +51,12 @@ const siginBody = z.object({
   password: z.string(),
 });
 
-router.post("/signin", (req, res) => {
+router.post("/signin", async (req, res) => {
   const { success } = siginBody.safeParse(req.body);
   if (!success) {
     return res.status(403).json({ message: "invalid inputs" });
   }
-  const user = User.findOne({
+  const user = await User.findOne({
     username: req.body.username,
     password: req.body.password,
   });
@@ -66,6 +67,26 @@ router.post("/signin", (req, res) => {
     return;
   }
   res.json({ msg: "error while logging in" });
+});
+
+const updateBody = z.object({
+  password: z.string().optional(),
+  firstName: z.string().optional(),
+  lastName: z.string().optional(),
+});
+
+router.put("/", authMiddleware, async (req, res) => {
+  const { success } = updateBody.safeParse(req.body);
+  if (!success) {
+    return res.status(403).json({ message: "error while updating info" });
+  }
+  await User.updateOne(req.body, {
+    id: req.userId,
+  });
+
+  res.json({
+    message: "updated successfully",
+  });
 });
 
 module.exports = router;
