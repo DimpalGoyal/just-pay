@@ -5,6 +5,7 @@ dotenv.load()
 
 mongoose.connect(process.env.MONGODB_URL)
 
+// hashing password before storing 
 const userSchema = mongoose.Schema({
     firstName: String,
     lastName: String,

@@ -26,7 +26,7 @@ router.post("/signup", async (req, res) => {
   });
 
   if (existingUser) {
-    res.status(411).send({ msg: "user exist / invalid inputs" });
+    return res.status(411).send({ msg: "user exist / invalid inputs" });
   }
 
   const user = await User.create({
@@ -43,6 +43,29 @@ router.post("/signup", async (req, res) => {
     message: "user created successfully",
     token: token,
   });
+});
+
+const siginBody = z.object({
+  username: z.string().email(),
+  password: z.string(),
+});
+
+router.post("/signin", (req, res) => {
+  const { success } = siginBody.safeParse(req.body);
+  if (!success) {
+    return res.status(403).json({ message: "invalid inputs" });
+  }
+  const user = User.findOne({
+    username: req.body.username,
+    password: req.body.password,
+  });
+
+  if (user) {
+    const token = jwt.sign({ userId: user._id }, jwtSecret);
+    res.json({ token: token });
+    return;
+  }
+  res.json({ msg: "error while logging in" });
 });
 
 module.exports = router;
