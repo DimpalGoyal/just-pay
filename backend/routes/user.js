@@ -6,8 +6,8 @@ const { User, Account } = require("../db");
 const dotenv = require("dotenv");
 const { authMiddleware } = require("../middleware");
 
-dotenv.load();
-const jwtSecret = env.process.JWT_SECRET;
+dotenv.config();
+const jwtSecret = process.env.JWT_SECRET;
 
 const signupBody = z.object({
   username: z.string().email(),
