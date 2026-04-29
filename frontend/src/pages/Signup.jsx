@@ -9,7 +9,7 @@ export function Signup() {
     <div>
       <Appbar />
       <div className="flex justify-center pt-10">
-        <div className="px-15 py-15 border-1">
+        <div className="px-15 py-15 border-1 rounded-2xl shadow-xl">
           <Heading label={"Sign Up"} />
           <SubHeading label={"enter details to create a account"} />
           <Inputbox label={"username"} placeHd={"name@gmail.com"} />
