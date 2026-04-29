@@ -1,7 +1,7 @@
-export function Button({ label }) {
+export function Button({ label, onClick }) {
   return (
-    <div className="border-1 py-2 rounded-md flex justify-center shadow-md mt-5 bg-black text-white">
-      <button>{label}</button>
+    <div className="border py-2 rounded-md flex justify-center shadow-md mt-5 bg-black text-white">
+      <button onClick={onClick}>{label}</button>
     </div>
   );
 }

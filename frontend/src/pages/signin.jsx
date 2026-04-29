@@ -9,12 +9,18 @@ export function Signin() {
     <div>
       <Appbar />
       <div className="flex justify-center pt-30">
-            <div className="border-1 py-20 px-15 rounded-2xl shadow-xl">
+            <div className="border py-20 px-15 rounded-2xl shadow-xl">
           <Heading label={"Sign In"} />
           <SubHeading label={"enter account credentials to login"} />
-          <Inputbox label={"username"} placeHd={"name@gmail.com"} />
+          <Inputbox label={"username"} placeHd={"name@gmail.com"} 
+            onChange={(e)=>{
+              
+            }} 
+          />
           <Inputbox label={"password"} placeHd={"....."} />
-          <Button label={"sign up"} />
+          <Button label={"sign up"} onClick={()=>{
+
+          }} />
 
         </div>
       </div>
