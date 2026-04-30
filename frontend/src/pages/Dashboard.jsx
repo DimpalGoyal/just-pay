@@ -1,17 +1,22 @@
+import axios from "axios";
 import { Appbar } from "../components/Appbar";
 import { Heading } from "../components/Heading";
 import { SubHeading } from "../components/SubHeading";
+import { Users } from "../components/Users";
 
 export function Dashboard() {
+
+  // const userBalance = () => {
+  //   const balance = axios.get("");
+  //   return balance.data.balance;
+  // };
+
   return (
     <div>
       <Appbar />
-      <Heading label={"JUST PAY"} />
-      <SubHeading label={"make your payments faster with the same safety"} />
-      <div className="flex justify-around mx-50 pt-10">
-        <div className="border p-30 rounded-2xl shadow-md">div1</div>
-        <div className="border p-30 rounded-2xl">div1</div>
-        <div className="border p-30 rounded-2xl">div1</div>
+      <div className="mx-50 pt-10">
+      {/* <Heading label={userBalance()}/> */}
+      <Users/>
       </div>
     </div>
   );

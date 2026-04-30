@@ -41,8 +41,8 @@ router.post("/signup", async (req, res) => {
 
   await Account.create({
     userId,
-    balance: 1 + Math.random() * 10000
-  })
+    balance: 1 + Math.random() * 10000,
+  });
 
   const token = jwt.sign({ userId }, jwtSecret);
 
@@ -98,16 +98,16 @@ router.put("/", authMiddleware, async (req, res) => {
 router.get("/bulk", async (req, res) => {
   const filter = req.query.filter || "";
 
-  const users = User.find({
+  const users = await User.find({
     $or: [
       {
         firstName: {
-          $regex: filter,
+          "$regex": filter,
         },
       },
       {
         lastName: {
-          $regex: filter,
+          "$regex": filter,
         },
       },
     ],

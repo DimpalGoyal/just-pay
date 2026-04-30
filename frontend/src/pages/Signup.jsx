@@ -12,14 +12,16 @@ export function Signup() {
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <div>
       <Appbar />
       <div className="flex justify-center pt-10">
         <div className="px-15 py-15 border rounded-2xl shadow-xl">
-          <Heading label={"Sign Up"} />
-          <SubHeading label={"enter details to create a account"} />
+          <div className="text-center">
+            <Heading label={"Sign Up"} />
+            <SubHeading label={"enter details to create a account"} />
+          </div>
           <Inputbox
             label={"username"}
             placeHd={"name@gmail.com"}
@@ -62,7 +64,7 @@ export function Signup() {
                   },
                 );
                 localStorage.setItem("token", response.data.token);
-                navigate('/dashboard')  
+                navigate("/dashboard");
               }}
             />
           </div>
